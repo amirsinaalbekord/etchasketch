@@ -26,7 +26,7 @@ function changeSize(input) {
 }
 
 function colorSquare() {
-    if(color === "rainbow") {
+    if(color === "random") {
         this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     }
     else {
@@ -36,4 +36,10 @@ function colorSquare() {
 
 function changeColor(choice) {
     color = choice;
+}
+
+function reset() {
+    let board = document.querySelector(".board");
+    let squares = board.querySelectorAll("div");
+    squares.forEach((div) => div.remove());
 }
