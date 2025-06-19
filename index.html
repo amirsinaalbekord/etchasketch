@@ -5,10 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylsheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-    <title>Document</title>
+    <title>SketchPad</title>
 </head>
 <body>
-    
+    <div class="flexContainer">
+        <div class="title"><h1>SketchPad</h1></div>
+        <div class="content">
+            <div class="board"></div>
+            <div class="buttons">
+                <button onclick="changeColor('black')">Black</button>
+                <button onclick="changeColor('white')">Eraser</button>
+                <button onclick="changeColor('random')">Random</button>
+                <button>Reset</button>
+            </div>
+            <div>
+                <input 
+                    type="text" 
+                    placeholder="Size of Board" 
+                    value="16" 
+                    onchange="changeSize(this.value)"
+                > 
+                <button>Set Size</button>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="script.js"></script>
 </html>
