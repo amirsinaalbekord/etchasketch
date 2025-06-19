@@ -1,4 +1,7 @@
 let color = 'black'
+let click = true;
+
+// deletes previous grid and creates new grid of divs, "squares", then colors them all white
 function populateBoard(size) {
     let board = document.querySelector(".board");
     let squares = board.querySelectorAll("div");
@@ -16,21 +19,26 @@ function populateBoard(size) {
 
 populateBoard(16);
 
+// changes size of grid
 function changeSize(input) {
     if(input >= 1 || input <= 100) {
+        document.querySelector(".error").style.display = "none";
         populateBoard(input);
     }
     else {
-        console.log("too many squares.")
+        document.querySelector(".error").style.display = "flex";
     }
 }
 
+// called anytime a square is hovered to change its color
 function colorSquare() {
-    if(color === "random") {
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    }
-    else {
-        this.style.backgroundColor = color;
+    if(click) {
+        if(color === "random") {
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+        else {
+            this.style.backgroundColor = color;
+        }
     }
 }
 
@@ -38,8 +46,21 @@ function changeColor(choice) {
     color = choice;
 }
 
+// colors entire grid white
 function reset() {
     let board = document.querySelector(".board");
     let squares = board.querySelectorAll("div");
-    squares.forEach((div) => div.remove());
+    squares.forEach((div) => div.style.backgroundColor = "white");
 }
+
+document.querySelector('body').addEventListener('click', (e) => {
+    if(e.target.tagName != 'BUTTON') { // does not change mode on button click
+        click = !click;
+        if(click) {
+            document.querySelector('.mode').textContent = "Mode: Coloring";
+        }
+        else {
+            document.querySelector('.mode').textContent = "Mode: Not Coloring";
+        }
+    }
+});
